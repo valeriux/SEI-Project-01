@@ -1,1 +1,4 @@
-console.log(Js loaded)
+document.addEventListener('DOMContentLoaded',() =>{
+
+
+})
