@@ -1,2 +1,2 @@
 # project-01
-space-invadors
+space-invaders
