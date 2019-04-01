@@ -43,7 +43,7 @@ body {
 }
 
 .wrap div.player {
-  content: url(../img/player.png);
+  content: url(../img/player2.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
