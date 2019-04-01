@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //Index for my missiles.
 
   function shootMissiles() {
-    // get the index of the square above the player
+    // Get the index of the square above the player
     let missilesIndex = playerIndex - width
-    // get the DOM element of the square above the player
+    // Get the DOM element of the square above the player
     let missiles = squares[missilesIndex]
     // Add the class of missiles to that square
     missiles.classList.add('missiles')
@@ -49,7 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
       //...repeat every 100ms
     }, 100)
   }
+
   //Next step: Remove when I got shoot
+  //function collisionDetection(){
+  //  (moveAliens(moves[[moveIndex]].splice(aliens, 1);
+  //  }
+//  }
+
+
+
 
   document.addEventListener('keydown', (e) => {
     switch(e.keyCode) {
