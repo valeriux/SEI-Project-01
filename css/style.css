@@ -10,6 +10,11 @@ body {
   margin: 0;
   background: url(../img/background-purple.png);
 }
+h1 {
+  text-align: center;
+  font-size: 300%;
+  margin: 3px;
+}
 
 .wrap {
   background: url(../img/background-blue.png);
@@ -21,7 +26,7 @@ body {
   height: 100%;
   justify-content: center;
   max-height: 600px;
-  max-width: 600px;
+  max-width: 800px;
   animation: scroll-background 5s linear infinite;
   border: 1px #696969 solid;
 }
@@ -64,6 +69,119 @@ body {
 }
 
 
-.header div {
- border: 2px #696969 solid;
+.second_screen .welcome_screen {
+  font-family: 'Space Mono', monospace;
+  width: 1400px;
+  height: 600px;
+  background-image: url(../img/background-purple.png);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  border: 10px 	#9370DB solid;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+  animation: scroll-background 5s linear infinite;
+  transform: translate(-50%, -50%);
+}
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
+}
+
+.second_screen.hide {
+  display: none;
+}
+
+.show-final-score {
+  display: none;
+}
+
+.show-final-score.show {
+  display: block;
+  font-size: 150%;
+  margin: 1rem 0;
+}
+
+.button {
+  text-align: center;
+  width: 100%;
+  height: 200px;
+  margin: 2rem 0;
+}
+
+.button button {
+  text-transform: uppercase;
+  color: black;
+  padding: 0.5rem 0.8rem;
+  background: #9370DB;
+  border-radius: 15px;
+  border: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.button button:hover {
+  box-shadow: 6px 18px 18px grey;
+}
+
+.button button:focus {
+  outline: 0;
+}
+
+.button button.hide {
+  opacity: 0;
+}
+
+.score_counter {
+  position: left;
+  padding-left: 7px;
+  padding-top: 20px;
+}
+
+.score {
+  display: inline-block;
+  font-size: 180%;
+  background:#FF69B4;
+  padding: 1.5rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 8px 8px 8px #DB7093;
+  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.score.add {
+  background: 	#FFE4E1;
+  color: #FF1493;
+  transform: scale(1.3);
+  opacity: 0.9;
+}
+
+
+/*Effect to move the image*/
+@-webkit-keyframes spaceboots {
+    0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+    10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+    30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+    80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+    90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+/*Effect to move the image*/
+.shake {
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.8s;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
 }

@@ -6,6 +6,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const squares = []
   const missileAudio = new Audio('sound/sfx-laser1.ogg')
   let alienMoveInterval = null
+  const scoreBoard      = document.querySelector('.score')
+  const btnStart        = document.querySelector('button')
+  const secondScreen    = document.querySelector('.second_screen')
+  const showFinalScore  = document.querySelector('.show-final-score')
+
+
+  let score = 0
+  let timeUp = false
+  //When btnStart is click I activate my class start.
+  btnStart.addEventListener('click', start)
+
+  //Function activated when I click my btnStart.
+  function start() {
+    scoreBoard.textContent = score
+    scoreBoard.classList.remove('add')
+    secondScreen.classList.add('hide')//Hide the secondScreen when the time is end.
+    // Initializing music
+    //music()//Invoking function music
+    setTimeout(() => {//Setting my timeout when my time is finish.
+      timeUp = true
+      secondScreen.classList.remove('hide')//The time is end when the timeup = true and remove my secondScreen.
+      //My condition if score is >0 showFinalScore added in my Welcome screen.
+      if (score > 0) {//If score > 0 only show final score.
+        showFinalScore.classList.add('show')
+        //If score>8 show Excellent message.
+        const message = 'Your score is: ' + score + (score >= 20 ? ' That is a very good score!': '')
+        showFinalScore.textContent = message
+      }
+    }, 10000)// For 60 seconds = 60000 miliseconds.
+  }
+
 
   //This for is to create my div tags.
   for(let i = 0; i < width * width; i++) {
@@ -53,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if(squares[missilesIndex].classList.contains('aliens')){
         // //Remove Missiles class.
         squares[missilesIndex].classList.remove('missiles')
+        scoreBoard.classList.add('add')
+        score++
+        scoreBoard.textContent = score
         clearInterval(missilesInterval)
         const index = aliensArray.indexOf(missilesIndex)
         console.log(missilesIndex)
@@ -62,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squares[missilesIndex].classList.remove('aliens')
         squares[missilesIndex].classList.remove('missiles')
         //console.log(aliens)
+
       }
       //Repeat every 60ms//
     }, 60)
@@ -95,7 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let aliensArray = [1, 4, 7, 10,
     13, 16, 19, 22,
     25, 28, 31, 34,
-    37, 40, 43, 46]
+    37, 40, 43, 46,
+    49, 52, 55, 58,
+    61, 64, 67, 70]
 
   function createAliens(){
     aliensArray.forEach(aliens => {
