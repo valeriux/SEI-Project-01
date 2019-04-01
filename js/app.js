@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrap = document.querySelector('.wrap')
   const width = 13
   const squares = []
+  const missileAudio = new Audio('sound/sfx-laser1.ogg')
+  let alienMoveInterval = null
 
   //This for is to create my div tags.
   for(let i = 0; i < width * width; i++) {
@@ -25,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[playerIndex].classList.add('player')
   }
   //Index for my missiles.
-
   function shootMissiles() {
     // Get the index of the square above the player
     let missilesIndex = playerIndex - width
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Remove missiles class from the current square
       missiles.classList.remove('missiles')
       if (missilesIndex - width < 0) clearInterval(missilesInterval)
+
       else {// Set the new index for the missiles square
         missilesIndex -= width
         // Get the new DOM element of the next square
@@ -46,18 +48,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add missiles class to the next square up
         missiles.classList.add('missiles')
       }
-      //...repeat every 100ms
-    }, 100)
+      /////////////////Remove when Alien got shot///////////////////////
+      //Clear missilesInterval//
+      if(squares[missilesIndex].classList.contains('aliens')){
+        // //Remove Missiles class.
+        squares[missilesIndex].classList.remove('missiles')
+        clearInterval(missilesInterval)
+        const index = aliensArray.indexOf(missilesIndex)
+        console.log(missilesIndex)
+        //Splice the index from the div in array.
+        aliensArray.splice(index,1)
+        // //Remove Alien class.
+        squares[missilesIndex].classList.remove('aliens')
+        squares[missilesIndex].classList.remove('missiles')
+        //console.log(aliens)
+      }
+      //Repeat every 60ms//
+    }, 60)
   }
-
-  //Next step: Remove when I got shoot
-  //function collisionDetection(){
-  //  (moveAliens(moves[[moveIndex]].splice(aliens, 1);
-  //  }
-//  }
-
-
-
 
   document.addEventListener('keydown', (e) => {
     switch(e.keyCode) {
@@ -110,10 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  setInterval(() => {
+  alienMoveInterval = setInterval(() => {
     moveIndex= moveIndex === 3 ? 0 : moveIndex + 1
     moveAliens(moves[[moveIndex]])
-  }, 800)
-
+  }, 500)
 
 })
