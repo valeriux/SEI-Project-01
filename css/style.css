@@ -56,7 +56,9 @@ body {
   background-repeat: no-repeat;
 }
 
-.wrap .laser  {
-  position: absolute;
-  height: 30px;
+.wrap div.missiles {
+  background: url(../img/missile-blue-1.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
