@@ -22,54 +22,41 @@ body {
   justify-content: center;
   max-height: 600px;
   max-width: 600px;
-  border: 1px purple solid;
+  animation: scroll-background 5s linear infinite;
+  border: 1px #696969 solid;
+}
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
 }
 
 .wrap div {
   flex-grow: 1;
   height: calc(100% / 13);
   width: calc(100% / 13);
- border: 1px purple solid;
+ border: 1px #696969 solid;
 }
 
 .wrap div.player {
   content: url(../img/player.png);
-  /*background-image: url(../img/player-blue-1.png);*/
-  /*background-color: white; */
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.wrap div.player[data-direction="forward"] {
-  transform: scaleX(1);
+.wrap div.aliens{
+  content: url(../img/space-invaders.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.wrap div.player[data-direction="backward"] {
-  transform: scaleX(-1);
-}
-
-.wrap div.player[data-step="0"] {
-  background-position-x: 1080px;
-  background-position-y: 0;
-}
-
-.wrap div.player[data-step="1"] {
-  background-position-x: 2160px;
-  background-position-y: 0;
-}
-
-.wrap div.player[data-step="2"] {
-  background-position-x: 3240px;
-  background-position-y: 0;
-}
-
-.wrap div.player[data-step="3"] {
-  background-position-x: 4320px;
-  background-position-y: 0;
-}
-
-.wrap div.player[data-step="4"] {
-  background-position-x: 5400px;
-  background-position-y: 0;
+.wrap .laser  {
+  position: absolute;
+  height: 30px;
 }
