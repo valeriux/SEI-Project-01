@@ -5,17 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 13
   const squares = []
   //////////////////////////////////////////////////////////////////////////////
-  const missileAudio = document.querySelector('audio')
+  const missileAudio    = document.querySelector('audio')
   const btnStart        = document.querySelector('.button')
   const secondScreen    = document.querySelector('.second_screen')
   const scoreBoard      = document.querySelector('.score')
   const showFinalScore  = document.querySelector('.show-final-score')
+  const livesboard      = document.querySelector('.lives')
 
   const moves=[1, 13, -1, -13]
   let moveIndex = 0
   let score = 0
   let timeUp = false
   let alienMoveInterval = null
+  let lives = 3
 
   //////////////This for is to create my div tags on my wrap////////////////////
   for(let i = 0; i < width * width; i++) {
@@ -47,13 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     scoreBoard.textContent = score
     clearInterval(missilesInterval)
     const index = aliensArray.indexOf(missilesIndex)
-    console.log(missilesIndex)
-    //Splice the index from the div in array.
+    //Splice: Adds/removes items to/from an array, and returns the removed item//
     aliensArray.splice(index,1)
     // //Remove Alien class.
     squares[missilesIndex].classList.remove('aliens')
     squares[missilesIndex].classList.remove('missiles')
-    //console.log(aliens)
   }
 
   //Index for my missiles.
@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     missiles.classList.add('missiles')
     // Move missiles up
     const missilesInterval = setInterval(() => {
-      console.log(missilesIndex)
       // Remove missiles class from the current square
       missiles.classList.remove('missiles')
       if (missilesIndex - width < 0) clearInterval(missilesInterval)
@@ -79,15 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
         missiles.classList.add('missiles')
       }
       /////////////////Remove my aliens when they Alien got shot////////////////
-      //Clear missilesInterval//
+      ///Clear missilesInterval///
       if(squares[missilesIndex].classList.contains('aliens')){
         alienWasShot(missilesIndex, missilesInterval)
       }
     }, 60)//Repeat every 60ms//
   }
 
-  //Creating my cases for Left, right and laser
-  document.addEventListener('keydown', (e) => {
+  const keydownHandler = (e) => {
     switch(e.keyCode) {
       case 37:
         // Left
@@ -109,12 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Laser SpaceBar
         shootMissiles()
     }
-  })
+  }
+  document.addEventListener('keydown', keydownHandler)
 
   // Creating my Aliens Array//
   let aliensArray = []
 
-  // Function to create my aliens.
+  // Function to create my aliens.//
   function createAliens(){
     squares.forEach((square, index) => {
       square.classList.remove('aliens')
@@ -154,11 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
     score=0
     scoreBoard.textContent = score
     timeUp = false
-    scoreBoard.classList.remove('add')
+    //scoreBoard.classList.remove('add')
     secondScreen.classList.add('hide')//Hide the secondScreen when the time is end.
     // Initializing music
     setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
+      clearInterval(alienBombInterval)
+      document.removeEventListener('keydown', keydownHandler)
       secondScreen.classList.remove('hide')//The time is end when the timeup = true and remove my secondScreen.
       //My condition if score is >0 showFinalScore added in my Welcome screen.
       if (score > 0) {//If score > 0 only show final score.
@@ -174,26 +175,44 @@ document.addEventListener('DOMContentLoaded', () => {
   btnStart.addEventListener('click', start)
 
 
-  ///////////////////////////Alien Bombs///////////////////////////
-  setInterval(() => {
-    //Declaring a const for bomIndex and choosing my aliens randomlind.//
-    const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length - 1))]
-    shootMissiles(bombIndex, width, 'bomb', 300)
-  },2000)
-
-  //Player and Bomb collision
-  function collision() {
-    const currentPlayer = squares.find(square => square.classList.contains('player'))
-    console.log(currentPlayer)
-    const collisionInterval = setInterval(() => {
-      if (currentPlayer.classList.contains('bomb')) {
-        currentPlayer.classList.remove('player')
-        console.log('man down')
+  //Function for dropping bombs
+  function dropBomb(bombIndex) {
+    let missilesIndex = bombIndex + width
+    let missile = squares[missilesIndex]
+    const missilesInterval = setInterval(() => {
+      if (missile) missile.classList.remove('bomb')
+      if (missilesIndex + width >= width**2) clearInterval(missilesInterval)
+      else if (missile) {
+        missilesIndex += width
+        missile = squares[missilesIndex]
+        squares[missilesIndex].classList.add('bomb')
       }
     }, 200)
   }
+  //////////////////New Set Interval for Alien Bombs///////////////////////////
+  //Declaring a const for bomIndex and choosing my aliens randomly.//
+  const alienBombInterval = setInterval(() =>{
+    const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
+    dropBomb(bombIndex)
+  },1000)
+  //Player and Bomb collision
+  function collision() {
+    const currentPlayer = squares.find(square => square.classList.contains('player'))
+    const collisionInterval = setInterval(() => {
+      if (currentPlayer.classList.contains('bomb')) {
+        currentPlayer.classList.remove('player')
 
-
-
-
+        if (lives > 0) {
+          lives--
+          livesboard.textContent = lives
+        }
+        if (lives === 0) {
+          console.log('finished')
+          clearInterval(collisionInterval)
+          // stop EVERYTHING...
+          currentPlayer.classList.remove('player')
+        }
+      }
+    }, 200)
+  }
 })
