@@ -9,10 +9,20 @@ body {
   justify-content: center;
   margin: 0;
   background: url(../img/background-purple.png);
+  animation: scroll-background 5s linear infinite;
+}
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
 }
 h1 {
   text-align: center;
-  font-size: 300%;
+  font-size: 350%;
   margin: 3px;
 }
 
@@ -115,8 +125,10 @@ h1 {
 }
 
 .button button {
+  font-family: 'Space Mono', monospace;
+  font-size: 150%;
   text-transform: uppercase;
-  color: black;
+  color: #000000;
   padding: 0.5rem 0.8rem;
   background: #9370DB;
   border-radius: 15px;
@@ -125,6 +137,8 @@ h1 {
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 1;
+  width: 120px;
+  height: 50px;
 }
 
 .button button:hover {
@@ -139,11 +153,6 @@ h1 {
   opacity: 0;
 }
 
-.score_counter {
-  position: left;
-  padding-left: 7px;
-  padding-top: 20px;
-}
 
 .score {
   display: inline-block;
@@ -161,7 +170,6 @@ h1 {
   transform: scale(1.3);
   opacity: 0.9;
 }
-
 
 /*Effect to move the image*/
 @-webkit-keyframes spaceboots {
