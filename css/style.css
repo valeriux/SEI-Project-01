@@ -58,7 +58,7 @@ h1 {
 }
 
 .wrap div.player {
-  content: url(../img/player2.svg);
+  content: url(../img/player2.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -77,6 +77,14 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.wrap div.bomb {
+  background-image: url(../img/missile-blue-1.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 
 .second_screen .welcome_screen {
