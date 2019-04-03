@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // //Remove Missiles class.
     console.log('HIT', missilesIndex)
     squares[missilesIndex].classList.remove('missiles')
-    scoreBoard.classList.add('add')
+    //scoreBoard.classList.add('add')
     score++
     scoreBoard.textContent = score
     clearInterval(missilesInterval)
@@ -171,18 +171,23 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       if(aliensArray.some(index => index > 156)){
-        gameOver('GAME OVER: The aliens reached the bottom!')
+        gameOver('GAME OVER: The aliens reached the bottom.  ' + 'Your score is: ' + score)
+        clearInterval(alienMoveInterval)
+      }
+
+      if(aliensArray.length === 0){
+        gameOver('GAME OVER: YOU WIN!!!' + 'Your score is: ' + score)
         clearInterval(alienMoveInterval)
       }
       //Message for Game Over when aliens reached the bottom.
-    }, 300)
+    }, 240)
 
     //////////////////New Set Interval for Alien Bombs///////////////////////////
     //Declaring a const for bomIndex and choosing my aliens randomly.//
     alienBombInterval = setInterval(() =>{
       const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
       dropBomb(bombIndex)
-    },220)
+    },160)
     score = 0
     scoreBoard.textContent = score
 
@@ -195,9 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initializing music
     gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
-      gameOver('You ran out of time!')
+      gameOver('YOU RAN OUT OF LIVES!!! ' + 'Your score is: ' + score)
     }, 10000000)
   }
+
+  //When btnStart is click I activate my class start.
+  btnStart.addEventListener('click', start)
+
 
   function gameOver(message){
     // stop EVERYTHING...
@@ -212,10 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     alienBombInterval = null
     showFinalScore.textContent = message
   }
-
-  //When btnStart is click I activate my class start.
-  btnStart.addEventListener('click', start)
-
 
   //Function for dropping bombs
   function dropBomb(bombIndex) {
@@ -232,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 150)
   }
 
-
   //Player and Bomb collision
   function collision() {
     const collisionInterval = setInterval(() => {
@@ -245,11 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
           livesboard.textContent = lives
         }
         if (lives === 0) {
-          gameOver('You ran out of lives!')
+          gameOver('YOU RAN OUT OF LIVES!' + 'Your score is: ' + score)
           clearInterval(collisionInterval)
         }
       }
     }, 100)
   }
-
 })
