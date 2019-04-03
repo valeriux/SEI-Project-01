@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     player.classList.remove('player')
     // Add the class of player to square the player should move to
     squares[playerIndex].classList.add('player')
-    collision()
   }
 
   function alienWasShot(missilesIndex, missilesInterval) {
@@ -169,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showFinalScore.textContent = message
       }
       clearInterval(alienMoveInterval)
-    }, 9000)
+    }, 20000)
   }
   //When btnStart is click I activate my class start.
   btnStart.addEventListener('click', start)
@@ -187,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 200)
+    }, 100)
   }
   //////////////////New Set Interval for Alien Bombs///////////////////////////
   //Declaring a const for bomIndex and choosing my aliens randomly.//
@@ -197,10 +196,10 @@ document.addEventListener('DOMContentLoaded', () => {
   },1000)
   //Player and Bomb collision
   function collision() {
-    const currentPlayer = squares.find(square => square.classList.contains('player'))
     const collisionInterval = setInterval(() => {
+      const currentPlayer = squares[playerIndex]
       if (currentPlayer.classList.contains('bomb')) {
-        currentPlayer.classList.remove('player')
+        currentPlayer.classList.remove('bomb')
 
         if (lives > 0) {
           lives--
@@ -213,6 +212,8 @@ document.addEventListener('DOMContentLoaded', () => {
           currentPlayer.classList.remove('player')
         }
       }
-    }, 200)
+    }, 100)
   }
+
+  collision()
 })
