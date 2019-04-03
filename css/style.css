@@ -54,7 +54,7 @@ h1 {
   flex-grow: 1;
   height: calc(100% / 13);
   width: calc(100% / 13);
- 
+
 }
 
 .wrap div.player {
@@ -85,8 +85,6 @@ h1 {
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
 }
-
-
 
 
 .wrap div.aliens{

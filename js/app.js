@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showFinalScore.textContent = message
       }
       clearInterval(alienMoveInterval)
-    }, 20000)
+    }, 9000)
   }
   //When btnStart is click I activate my class start.
   btnStart.addEventListener('click', start)
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 100)
+    }, 200)
   }
   //////////////////New Set Interval for Alien Bombs///////////////////////////
   //Declaring a const for bomIndex and choosing my aliens randomly.//
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //Player and Bomb collision
   function collision() {
     const collisionInterval = setInterval(() => {
-      const currentPlayer = squares[playerIndex]
+    const currentPlayer = squares[playerIndex]
       if (currentPlayer.classList.contains('bomb')) {
         currentPlayer.classList.remove('bomb')
 
