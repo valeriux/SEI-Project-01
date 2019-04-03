@@ -17,18 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
   let score = 0
   let timeUp = false
   let alienMoveInterval = null
+  let alienBombInterval = null
+  let gameTimer = null
   let lives = 3
-
+  let playerIndex
   //////////////This for is to create my div tags on my wrap////////////////////
   for(let i = 0; i < width * width; i++) {
     const square = document.createElement('div')
     squares.push(square)
     wrap.appendChild(square)
   }
-
-  //Index for my player position 162
-  let playerIndex = 162
-  squares[playerIndex].classList.add('player')
 
   //Creating my function move to take the position of my player.
   function move() {
@@ -84,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 60)//Repeat every 60ms//
   }
 
+
+
   const keydownHandler = (e) => {
     switch(e.keyCode) {
       case 37:
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shootMissiles()
     }
   }
-  document.addEventListener('keydown', keydownHandler)
+
 
   // Creating my Aliens Array//
   let aliensArray = []
@@ -132,44 +132,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Function activated when I click my btnStart.
   function start() {
+    playerIndex = 162
+    //Index for my player position 162
+    squares[playerIndex].classList.add('player')
+    document.addEventListener('keydown', keydownHandler)
     clearInterval(alienMoveInterval)
     aliensArray = [
-      1, 4, 7, 10,
-      13, 16, 19, 22,
-      25, 28, 31, 34,
-      37, 40, 43, 46,
-      49, 52, 55, 58,
-      61, 64, 67, 70,
-      73, 76
+      1, 3, 5, 7,
+      9, 11, 13, 15,
+      17, 19, 21, 23,
+      25, 27, 29, 31,
+      33, 35, 37, 39,
+      41, 43, 45, 47,
+      49, 51, 53, 55,
+      57, 59, 61, 63
     ]
     createAliens()
+    collision()
     moveIndex = 0
     alienMoveInterval = setInterval(() => {
       moveIndex= moveIndex === 3 ? 0 : moveIndex + 1
       moveAliens(moves[moveIndex])
     }, 500)//Interval time for my aliens.
 
-    score=0
+    //////////////////New Set Interval for Alien Bombs///////////////////////////
+    //Declaring a const for bomIndex and choosing my aliens randomly.//
+    alienBombInterval = setInterval(() =>{
+      const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
+      dropBomb(bombIndex)
+    },1000)
+    score = 0
     scoreBoard.textContent = score
+
+    lives = 3
+    livesboard.textContent = lives
+
     timeUp = false
-    //scoreBoard.classList.remove('add')
+
     secondScreen.classList.add('hide')//Hide the secondScreen when the time is end.
     // Initializing music
-    setTimeout(() => {//Setting my timeout when my time is finish.
+    gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
-      clearInterval(alienBombInterval)
-      document.removeEventListener('keydown', keydownHandler)
-      secondScreen.classList.remove('hide')//The time is end when the timeup = true and remove my secondScreen.
-      //My condition if score is >0 showFinalScore added in my Welcome screen.
-      if (score > 0) {//If score > 0 only show final score.
-        showFinalScore.classList.add('show')
-        //If score>8 show Excellent message.
-        const message = 'Your score is: ' + score + (score >= 8 ? ' You score is good!': '')
-        showFinalScore.textContent = message
-      }
-      clearInterval(alienMoveInterval)
+      gameOver()
     }, 9000)
   }
+
+  function gameOver(){
+    // stop EVERYTHING...
+    squares[playerIndex].classList.remove('player')
+    document.removeEventListener('keydown', keydownHandler)
+    showFinalScore.classList.add('show')
+    secondScreen.classList.remove('hide')//The time is end when the timeup = true and remove my secondScreen.
+    clearInterval(alienBombInterval)
+    clearInterval(alienMoveInterval)
+    clearInterval(gameTimer)
+    gameTimer = null
+    alienBombInterval = null
+    const message = 'GAME OVER!!!'
+    showFinalScore.textContent = message
+  }
+
   //When btnStart is click I activate my class start.
   btnStart.addEventListener('click', start)
 
@@ -186,18 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 200)
+    }, 150)
   }
-  //////////////////New Set Interval for Alien Bombs///////////////////////////
-  //Declaring a const for bomIndex and choosing my aliens randomly.//
-  const alienBombInterval = setInterval(() =>{
-    const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
-    dropBomb(bombIndex)
-  },1000)
+
+
   //Player and Bomb collision
   function collision() {
     const collisionInterval = setInterval(() => {
-    const currentPlayer = squares[playerIndex]
+      const currentPlayer = squares[playerIndex]
       if (currentPlayer.classList.contains('bomb')) {
         currentPlayer.classList.remove('bomb')
 
@@ -206,14 +224,13 @@ document.addEventListener('DOMContentLoaded', () => {
           livesboard.textContent = lives
         }
         if (lives === 0) {
-          console.log('finished')
+          gameOver()
           clearInterval(collisionInterval)
-          // stop EVERYTHING...
-          currentPlayer.classList.remove('player')
         }
       }
     }, 100)
   }
 
-  collision()
+
+
 })
