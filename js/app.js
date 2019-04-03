@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const showFinalScore  = document.querySelector('.show-final-score')
   const livesboard      = document.querySelector('.lives')
 
-  const moves=[1, 13, -1, -13]
-  let moveIndex = 0
+  // const moves=[1, 13, -1, -13]
+  // let moveIndex = 0
   let score = 0
   let timeUp = false
   let alienMoveInterval = null
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameTimer = null
   let lives = 3
   let playerIndex
+  //let intervalID = null
   //////////////This for is to create my div tags on my wrap////////////////////
   for(let i = 0; i < width * width; i++) {
     const square = document.createElement('div')
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function alienWasShot(missilesIndex, missilesInterval) {
     // //Remove Missiles class.
+    console.log('HIT', missilesIndex)
     squares[missilesIndex].classList.remove('missiles')
     scoreBoard.classList.add('add')
     score++
@@ -48,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const index = aliensArray.indexOf(missilesIndex)
     //Splice: Adds/removes items to/from an array, and returns the removed item//
     aliensArray.splice(index,1)
+    console.log('spliced', aliensArray)
     // //Remove Alien class.
     squares[missilesIndex].classList.remove('aliens')
     squares[missilesIndex].classList.remove('missiles')
@@ -79,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(squares[missilesIndex].classList.contains('aliens')){
         alienWasShot(missilesIndex, missilesInterval)
       }
-    }, 60)//Repeat every 60ms//
+    }, 80)//Repeat every 60ms//
   }
 
 
@@ -120,15 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  function moveAliens(movement) {
-    aliensArray.forEach(aliens => {
-      squares[aliens].classList.remove('aliens')
-    })
-    aliensArray = aliensArray.map(aliens => aliens + movement)
-    aliensArray.forEach(aliens => {
-      squares[aliens].classList.add('aliens')
-    })
-  }
+  // function moveAliens(movement) {
+  //   aliensArray.forEach(aliens => {
+  //     squares[aliens].classList.remove('aliens')
+  //   })
+  //   aliensArray = aliensArray.map(aliens => aliens + movement)
+  //   aliensArray.forEach(aliens => {
+  //     squares[aliens].classList.add('aliens')
+  //   })
+  // }
 
   //Function activated when I click my btnStart.
   function start() {
@@ -149,18 +152,37 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
     createAliens()
     collision()
-    moveIndex = 0
-    alienMoveInterval = setInterval(() => {
-      moveIndex= moveIndex === 3 ? 0 : moveIndex + 1
-      moveAliens(moves[moveIndex])
-    }, 500)//Interval time for my aliens.
+    // moveIndex = 0
+    // alienMoveInterval = setInterval(() => {
+    //   moveIndex= moveIndex === 3 ? 0 : moveIndex + 1
+    //   moveAliens(moves[moveIndex])
+    // }, 500)//Interval time for my aliens.
+
+    aliensArray.forEach(alien => {
+      squares[alien].classList.add('aliens')
+    })
+
+    alienMoveInterval = setInterval(() =>{
+      squares.forEach(square => square.classList.remove('aliens'))
+      aliensArray = aliensArray.map(alien => alien + 1)
+
+      aliensArray.forEach(alien => {
+        squares[alien].classList.add('aliens')
+      })
+
+      if(aliensArray.some(index => index > 156)){
+        gameOver('GAME OVER: The aliens reached the bottom!')
+        clearInterval(alienMoveInterval)
+      }
+      //Message for Game Over when aliens reached the bottom.
+    }, 300)
 
     //////////////////New Set Interval for Alien Bombs///////////////////////////
     //Declaring a const for bomIndex and choosing my aliens randomly.//
     alienBombInterval = setInterval(() =>{
       const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
       dropBomb(bombIndex)
-    },1000)
+    },220)
     score = 0
     scoreBoard.textContent = score
 
@@ -173,11 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initializing music
     gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
-      gameOver()
-    }, 9000)
+      gameOver('You ran out of time!')
+    }, 10000000)
   }
 
-  function gameOver(){
+  function gameOver(message){
     // stop EVERYTHING...
     squares[playerIndex].classList.remove('player')
     document.removeEventListener('keydown', keydownHandler)
@@ -188,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(gameTimer)
     gameTimer = null
     alienBombInterval = null
-    const message = 'GAME OVER!!!'
     showFinalScore.textContent = message
   }
 
@@ -224,13 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
           livesboard.textContent = lives
         }
         if (lives === 0) {
-          gameOver()
+          gameOver('You ran out of lives!')
           clearInterval(collisionInterval)
         }
       }
     }, 100)
   }
-
-
 
 })
