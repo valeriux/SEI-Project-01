@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const wrap = document.querySelector('.wrap')
   const width = 13
   const squares = []
+
   //////////////////////////////////////////////////////////////////////////////
   const missileAudio    = document.querySelector('audio')
   const btnStart        = document.querySelector('.button')
@@ -12,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const showFinalScore  = document.querySelector('.show-final-score')
   const livesboard      = document.querySelector('.lives')
 
-  // const moves=[1, 13, -1, -13]
-  // let moveIndex = 0
   let score = 0
   let timeUp = false
   let alienMoveInterval = null
@@ -40,10 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function alienWasShot(missilesIndex, missilesInterval) {
-    // //Remove Missiles class.
-    console.log('HIT', missilesIndex)
+    // //Remove missiles class.
     squares[missilesIndex].classList.remove('missiles')
-    //scoreBoard.classList.add('add')
     score++
     scoreBoard.textContent = score
     clearInterval(missilesInterval)
@@ -78,14 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
         missiles.classList.add('missiles')
       }
       /////////////////Remove my aliens when they Alien got shot////////////////
-      ///Clear missilesInterval///
       if(squares[missilesIndex].classList.contains('aliens')){
         alienWasShot(missilesIndex, missilesInterval)
       }
     }, 80)//Repeat every 60ms//
   }
-
-
 
   const keydownHandler = (e) => {
     switch(e.keyCode) {
@@ -111,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   // Creating my Aliens Array//
   let aliensArray = []
 
@@ -122,16 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if(aliensArray.includes(index)) square.classList.add('aliens')
     })
   }
-
-  // function moveAliens(movement) {
-  //   aliensArray.forEach(aliens => {
-  //     squares[aliens].classList.remove('aliens')
-  //   })
-  //   aliensArray = aliensArray.map(aliens => aliens + movement)
-  //   aliensArray.forEach(aliens => {
-  //     squares[aliens].classList.add('aliens')
-  //   })
-  // }
 
   //Function activated when I click my btnStart.
   function start() {
@@ -152,12 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
     createAliens()
     collision()
-    // moveIndex = 0
-    // alienMoveInterval = setInterval(() => {
-    //   moveIndex= moveIndex === 3 ? 0 : moveIndex + 1
-    //   moveAliens(moves[moveIndex])
-    // }, 500)//Interval time for my aliens.
-
     aliensArray.forEach(alien => {
       squares[alien].classList.add('aliens')
     })
@@ -176,10 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if(aliensArray.length === 0){
-        gameOver('GAME OVER: YOU WIN!!!' + 'Your score is: ' + score)
+        gameOver('GAME OVER: YOU WIN!!!.  ' + 'Your score is: ' + score)
         clearInterval(alienMoveInterval)
       }
-      //Message for Game Over when aliens reached the bottom.
     }, 240)
 
     //////////////////New Set Interval for Alien Bombs///////////////////////////
@@ -200,13 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initializing music
     gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
-      gameOver('YOU RAN OUT OF LIVES!!! ' + 'Your score is: ' + score)
+      gameOver('YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
     }, 10000000)
   }
 
   //When btnStart is click I activate my class start.
   btnStart.addEventListener('click', start)
-
 
   function gameOver(message){
     // stop EVERYTHING...
@@ -249,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
           livesboard.textContent = lives
         }
         if (lives === 0) {
-          gameOver('YOU RAN OUT OF LIVES!' + 'Your score is: ' + score)
+          gameOver('YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
           clearInterval(collisionInterval)
         }
       }
