@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //////////////////////////////////////////////////////////////////////////////
   const missileAudio    = document.querySelector('audio')
+  const aliendeadAudio = document.querySelector('.aliendead')
   const btnStart        = document.querySelector('.button')
   const secondScreen    = document.querySelector('.second_screen')
   const scoreBoard      = document.querySelector('.score')
@@ -46,8 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
     squares[missilesIndex].classList.add('explosion')
     setTimeout(() => {
       squares[missilesIndex].classList.remove('explosion')
-    }, 150)
+    }, 150)//Change to explosion image every 150ms.
 
+    aliendeadAudio.src = 'sound/explosion1.wav'
+    aliendeadAudio.play()
     // //Remove missiles class.
     squares[missilesIndex].classList.remove('missiles')
     score++
@@ -57,9 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //Splice: Adds/removes items to/from an array, and returns the removed item//
     aliensArray.splice(index,1)
     console.log('spliced', aliensArray)
-    // //Remove Alien class.
-    //squares[missilesIndex].classList.remove('aliens')
-    //squares[missilesIndex].classList.remove('missiles')
 
   }
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if(squares[missilesIndex].classList.contains('aliens')){
         alienWasShot(missilesIndex, missilesInterval)
       }
-    }, 100)//Repeat every 100ms//
+    }, 100)//Shoot missiles repeat every 100ms//
   }
 
   const keydownHandler = (e) => {
@@ -148,7 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
       33, 35, 37, 39,
       41, 43, 45, 47,
       49, 51, 53, 55,
-      57, 59, 61, 63
+      57, 59, 61, 63,
+      65, 67, 69, 71,
+      73, 75, 77, 79
     ]
     createAliens()
     collision()
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       if(aliensArray.some(index => index > 156)){
-        gameOver('GAME OVER: The aliens reached planet Earth.  ' + 'Your score is: ' + score)
+        gameOver('GAME OVER: The aliens reached planet Earth.  ' + 'Your score is: ' + score)      //Message for Game Over when aliens reached the bottom.
         clearInterval(alienMoveInterval)
       }
 
@@ -174,19 +176,19 @@ document.addEventListener('DOMContentLoaded', () => {
         gameOver('GAME OVER: YOU WIN!!!.  ' + 'Your score is: ' + score)
         clearInterval(alienMoveInterval)
       }
-      //Message for Game Over when aliens reached the bottom.
-    }, 240)
+
+    }, 400)//Frequency of the aliens have been move.
 
     //////////////////New Set Interval for Alien Bombs///////////////////////////
     //Declaring a const for bomIndex and choosing my aliens randomly.//
     alienBombInterval = setInterval(() =>{
       const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
       dropBomb(bombIndex)
-    },160)
+    },300)//Frequency of bombs.
     score = 0
     scoreBoard.textContent = score
 
-    lives = 3
+    lives = 30
     livesboard.textContent = lives
 
     timeUp = false
@@ -228,10 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 150)
+    }, 300)//
   }
 
-  //Player and Bomb collision
+  //Bomb collision
   function collision() {
     const collisionInterval = setInterval(() => {
       const currentPlayer = squares[playerIndex]
@@ -247,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
           clearInterval(collisionInterval)
         }
       }
-    }, 100)
+    }, 450)
   }
 
 })
