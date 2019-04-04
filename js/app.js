@@ -39,6 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function alienWasShot(missilesIndex, missilesInterval) {
+
+    if (squares[missilesIndex].classList.contains('aliens'))
+      squares[missilesIndex].classList.remove('missiles')
+    squares[missilesIndex].classList.remove('aliens')
+    squares[missilesIndex].classList.add('explosion')
+    setTimeout(() => {
+      squares[missilesIndex].classList.remove('explosion')
+    }, 150)
+
+
     // //Remove missiles class.
     squares[missilesIndex].classList.remove('missiles')
     score++
@@ -49,8 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     aliensArray.splice(index,1)
     console.log('spliced', aliensArray)
     // //Remove Alien class.
-    squares[missilesIndex].classList.remove('aliens')
-    squares[missilesIndex].classList.remove('missiles')
+    //squares[missilesIndex].classList.remove('aliens')
+    //squares[missilesIndex].classList.remove('missiles')
+
   }
 
   //Index for my missiles.
