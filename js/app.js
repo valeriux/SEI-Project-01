@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       squares[missilesIndex].classList.remove('explosion')
     }, 150)
 
-
     // //Remove missiles class.
     squares[missilesIndex].classList.remove('missiles')
     score++
@@ -66,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Index for my missiles.
   function shootMissiles() {
+
     // Get the index of the square above the player
     let missilesIndex = playerIndex - width
     // Get the DOM element of the square above the player
@@ -89,13 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if(squares[missilesIndex].classList.contains('aliens')){
         alienWasShot(missilesIndex, missilesInterval)
       }
-    }, 80)//Repeat every 60ms//
+    }, 100)//Repeat every 100ms//
   }
 
   const keydownHandler = (e) => {
     switch(e.keyCode) {
       case 37:
         // Left
+        e.preventDefault()
         if(playerIndex % width > 0) {
           playerIndex--
           move()
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       case 39:
         // Right
+        e.preventDefault()
         if(playerIndex % width < width - 1) {
           playerIndex++
           move()
@@ -112,6 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       case 32:
         // Laser SpaceBar
+        e.preventDefault()
+        missileAudio.pause()
+        missileAudio.currentTime = 0
+        missileAudio.play()
         shootMissiles()
     }
   }
@@ -180,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     scoreBoard.textContent = score
 
-    lives = 50
+    lives = 3
     livesboard.textContent = lives
 
     timeUp = false
@@ -190,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
       timeUp = true
       gameOver('YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
-    }, 10000000)
+    }, 50000)
   }
 
   //When btnStart is click I activate my class start.
@@ -243,4 +249,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100)
   }
+
 })

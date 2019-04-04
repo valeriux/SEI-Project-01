@@ -8,7 +8,7 @@ body {
   height: 100vh;
   justify-content: center;
   margin: 0;
-  background: url(../img/background-purple.png);
+  background: url(../img/background-blue.png);
   animation: scroll-background 5s linear infinite;
 }
 /*Animation scroll background space*/
@@ -35,9 +35,10 @@ h1 {
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 600px;
-  max-width: 800px;
+  max-height: 550px;
+  max-width: 600px;
   animation: scroll-background 5s linear infinite;
+  border: 0.5px #696969 solid;
 
 }
 /*Animation scroll background space*/
@@ -116,14 +117,15 @@ h1 {
 
 .second_screen .welcome_screen {
   font-family: 'Space Mono', monospace;
-  width: 1400px;
-  height: 600px;
-  background-image: url(../img/background-purple.png);
+  color: #b7e66f;
+  width: 1300px;
+  height: 550px;
+  background-image: url(../img/background-blue.png);
   position: absolute;
   top: 50%;
   left: 50%;
   border-radius: 20px;
-  border: 10px 	#9370DB solid;
+  border: 4px #b7e66f solid;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
   animation: scroll-background 5s linear infinite;
   transform: translate(-50%, -50%);
@@ -148,7 +150,7 @@ h1 {
 
 .show-final-score.show {
   display: block;
-  font-size: 150%;
+  font-size: 300%;
   margin: 1rem 0;
 }
 
@@ -165,7 +167,7 @@ h1 {
   text-transform: uppercase;
   color: #000000;
   padding: 0.5rem 0.8rem;
-  background: #9370DB;
+  background: #b7e66f;
   border-radius: 15px;
   border: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -188,23 +190,6 @@ h1 {
   opacity: 0;
 }
 
-
-.score {
-  display: inline-block;
-  font-size: 140%;
-  background:#7A378B;
-  padding: 1.0rem 1.0rem;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px #9F5F9F;
-  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
-}
-
-.score.add {
-  background:#ECC8EC;
-  color: #7A378B;
-  transform: scale(1.3);
-  opacity: 0.9;
-}
 
 /*Effect to move the image*/
 @-webkit-keyframes spaceboots {
@@ -245,10 +230,30 @@ h1 {
   padding-bottom: 40px;
   margin-left: 60px;
   display: inline-block;
-  font-size: 170%;
-  background:#7A378B;
-  padding: 1.0rem 1.0rem;
-  border-radius: 8px;
-  box-shadow: 9px 9px 9px #9F5F9F;
-  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+  font-size: 140%;
+  background:#39ff14;
+  padding: 0.5rem 1.0rem;
+  border-radius: 7px;
+}
+.lives_letters{
+ font-family: 'Raleway', sans-serif;
+ font-size: 50%;
+ margin-left: 30px;
+ color: #39ff14;
+}
+
+.score {
+  font-family: 'Space Mono', monospace;
+  display: inline-block;
+  font-size: 140%;
+  background:#39ff14;
+  padding: 0.5rem 1.0rem;
+  border-radius: 7px;
+}
+
+.score_letters{
+ font-family: 'Raleway', sans-serif;
+ font-size: 50%;
+ margin-left: 30px;
+ color: #39ff14;
 }
