@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
     createAliens()
     collision()
+
     aliensArray.forEach(alien => {
       squares[alien].classList.add('aliens')
     })
@@ -148,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       if(aliensArray.some(index => index > 156)){
-        gameOver('GAME OVER: The aliens reached the bottom.  ' + 'Your score is: ' + score)
+        gameOver('GAME OVER: The aliens reached planet Earth.  ' + 'Your score is: ' + score)
         clearInterval(alienMoveInterval)
       }
 
@@ -156,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameOver('GAME OVER: YOU WIN!!!.  ' + 'Your score is: ' + score)
         clearInterval(alienMoveInterval)
       }
+      //Message for Game Over when aliens reached the bottom.
     }, 240)
 
     //////////////////New Set Interval for Alien Bombs///////////////////////////
@@ -167,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     score = 0
     scoreBoard.textContent = score
 
-    lives = 3
+    lives = 50
     livesboard.textContent = lives
 
     timeUp = false

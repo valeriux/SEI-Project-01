@@ -94,7 +94,7 @@ h1 {
 }
 
 .wrap div.explosion{
-  content: url(../img/space-invaders.svg);
+  content: url(../img/explosion.jpg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
