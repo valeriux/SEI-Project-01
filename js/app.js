@@ -6,21 +6,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const squares = []
 
   //////////////////////////////////////////////////////////////////////////////
-  const missileAudio    = document.querySelector('audio')
-  const aliendeadAudio = document.querySelector('.aliendead')
   const btnStart        = document.querySelector('.button')
   const secondScreen    = document.querySelector('.second_screen')
   const scoreBoard      = document.querySelector('.score')
   const showFinalScore  = document.querySelector('.show-final-score')
   const livesboard      = document.querySelector('.lives')
+  const missileAudio    = document.querySelector('audio')
+  const aliendeadAudio  = document.querySelector('.aliendead')
+  const gameoverAudio   = document.querySelector('.gameover')
+  const winAudio        = document.querySelector('.winaudio')
 
   let score = 0
-  let timeUp = false
+  //let timeUp = false
   let alienMoveInterval = null
   let alienBombInterval = null
   let gameTimer = null
   let lives = 3
   let playerIndex
+  let gameInPlay = false
   //let intervalID = null
   //////////////This for is to create my div tags on my wrap////////////////////
   for(let i = 0; i < width * width; i++) {
@@ -41,6 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function alienWasShot(missilesIndex, missilesInterval) {
 
+    // //Remove missiles class.
+    squares[missilesIndex].classList.remove('missiles')
+    score++
+    scoreBoard.textContent = score
+    clearInterval(missilesInterval)
+    const index = aliensArray.indexOf(missilesIndex)
+    //Splice: Adds/removes items to/from an array, and returns the removed item//
+    aliensArray.splice(index,1)
+    //console.log('spliced', aliensArray)
+
+
     if (squares[missilesIndex].classList.contains('aliens'))
       squares[missilesIndex].classList.remove('missiles')
     squares[missilesIndex].classList.remove('aliens')
@@ -51,15 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     aliendeadAudio.src = 'sound/explosion1.wav'
     aliendeadAudio.play()
-    // //Remove missiles class.
-    squares[missilesIndex].classList.remove('missiles')
-    score++
-    scoreBoard.textContent = score
-    clearInterval(missilesInterval)
-    const index = aliensArray.indexOf(missilesIndex)
-    //Splice: Adds/removes items to/from an array, and returns the removed item//
-    aliensArray.splice(index,1)
-    console.log('spliced', aliensArray)
+
 
   }
 
@@ -135,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Function activated when I click my btnStart.
   function start() {
+    gameInPlay = true
+    squares.forEach(square => square.classList.remove('bomb'))
     playerIndex = 162
     //Index for my player position 162
     squares[playerIndex].classList.add('player')
@@ -168,13 +176,19 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 
       if(aliensArray.some(index => index > 156)){
-        gameOver('GAME OVER: The aliens reached planet Earth.  ' + 'Your score is: ' + score)      //Message for Game Over when aliens reached the bottom.
+        gameOver('GAME OVER: The aliens reached planet Earth.  ' + 'Your score is: ' + score)
+        gameoverAudio.src = 'sound/gameover.wav'
+        gameoverAudio.play()
+        //Message for Game Over when aliens reached the bottom.
         clearInterval(alienMoveInterval)
       }
 
       if(aliensArray.length === 0){
-        gameOver('GAME OVER: YOU WIN!!!.  ' + 'Your score is: ' + score)
+        gameOver('YOU WIN!!!.  ' + 'Your score is: ' + score)
+        winAudio.src = 'sound/winaudio.mp4'
+        winAudio.play()
         clearInterval(alienMoveInterval)
+
       }
 
     }, 400)//Frequency of the aliens have been move.
@@ -184,20 +198,22 @@ document.addEventListener('DOMContentLoaded', () => {
     alienBombInterval = setInterval(() =>{
       const bombIndex = aliensArray[Math.floor(Math.random()*(aliensArray.length))]
       dropBomb(bombIndex)
-    },300)//Frequency of bombs.
+    },350)//Frequency of bombs.
     score = 0
     scoreBoard.textContent = score
 
-    lives = 30
+    lives = 3
     livesboard.textContent = lives
 
-    timeUp = false
+    //timeUp = false
 
     secondScreen.classList.add('hide')//Hide the secondScreen when the time is end.
     // Initializing music
     gameTimer = setTimeout(() => {//Setting my timeout when my time is finish.
-      timeUp = true
-      gameOver('YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
+    //  timeUp = true
+      gameOver('GAME OVER: YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
+      gameoverAudio.src = 'sound/gameover.wav'
+      gameoverAudio.play()
     }, 50000)
   }
 
@@ -205,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnStart.addEventListener('click', start)
 
   function gameOver(message){
-    // stop EVERYTHING...
+    gameInPlay = false
     squares[playerIndex].classList.remove('player')
     document.removeEventListener('keydown', keydownHandler)
     showFinalScore.classList.add('show')
@@ -230,7 +246,8 @@ document.addEventListener('DOMContentLoaded', () => {
         missile = squares[missilesIndex]
         squares[missilesIndex].classList.add('bomb')
       }
-    }, 300)//
+      if (!gameInPlay) clearInterval(missilesInterval)
+    }, 450)//Frequency of time when the bombs are drop.
   }
 
   //Bomb collision
@@ -245,11 +262,12 @@ document.addEventListener('DOMContentLoaded', () => {
           livesboard.textContent = lives
         }
         if (lives === 0) {
-          gameOver('YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
+          gameOver('GAME OVER: YOU RAN OUT OF LIVES!!!  ' + 'Your score is: ' + score)
+          gameoverAudio.src = 'sound/gameover.wav'
+          gameoverAudio.play()
           clearInterval(collisionInterval)
         }
       }
     }, 450)
   }
-
 })
