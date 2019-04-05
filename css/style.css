@@ -11,6 +11,7 @@ body {
   background: url(../img/background-blue.png);
   animation: scroll-background 5s linear infinite;
 }
+
 /*Animation scroll background space*/
 @keyframes scroll-background {
   from {
@@ -106,6 +107,7 @@ h1 {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+
 }
 
 .wrap div.bomb {
@@ -236,6 +238,8 @@ h1 {
   padding: 0.5rem 1.0rem;
   border-radius: 7px;
 }
+
+
 .lives_letters{
  font-family: 'Raleway', sans-serif;
  font-size: 50%;
@@ -257,4 +261,19 @@ h1 {
  font-size: 50%;
  margin-left: 30px;
  color: #39ff14;
+}
+
+
+.footer{
+  font-family: 'Space Mono', monospace;
+   font-size: 20px;
+   position: fixed;
+   right: 0px;
+   left: 0px;
+   bottom: 10px;
+   width: 88%;
+   background: url(../img/background-blue.png);
+   color: #39ff14;
+   text-align: center;
+
 }
