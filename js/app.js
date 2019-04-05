@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let playerIndex
   let gameInPlay = false
   //let intervalID = null
+  
   //////////////This for is to create my div tags on my wrap////////////////////
   for(let i = 0; i < width * width; i++) {
     const square = document.createElement('div')
