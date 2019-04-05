@@ -36,8 +36,8 @@ h1 {
   flex-wrap: wrap;
   height: 100%;
   justify-content: center;
-  max-height: 550px;
-  max-width: 600px;
+  max-height: 560px;
+  max-width: 500px;
   animation: scroll-background 5s linear infinite;
   border: 0.5px #696969 solid;
 
