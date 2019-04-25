@@ -2,14 +2,47 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>SEI Project 1: The Game</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" charset="utf-8"></script>
-    <title></title>
+    <title>SPACE INVADERS GAME</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>HELLOOOOOOOOOOOOOO!!!!!!!!!!!!!!!!!!</h1>
-    <h2>HELLOOOOOOOOOOOOOO 1!!!!!!!!!!!!!!!!!!</h2>
-    <h3>HELLOOOOOOOOOOOOOO 1!!!!!!!!!!!!!!!!!!</h3>
+      <div class="wrap"></div>
+
+      <div class="second_screen"> <!-- Div for my Second_screen-->
+          <div class="welcome_screen"> <!-- Div for my Welcome_screen-->
+            <div class="button">
+            <strong><h1>SPACE INVADERS</h1></strong>
+            <div>
+              <img src="img/space-invaders4.png" class="shake" height="250" width="250">
+            </div>
+            <button>Start</button>
+
+            <div class="show-final-score"></div><!-- Div to show the finalScore in Welcome Screen-->
+          </div>
+        </div>
+      </div>
+
+      <audio src="sound/sfx-laser1.ogg"></audio>
+      <audio class="aliendead" src="sound/explosion1.wav"></audio>
+      <audio class="gameover" src="sound/gameover.wav"></audio>
+      <audio class="winaudio" src="sound/winaudio.mp4"></audio>
+
+      <div class="right-bar">
+        <table>
+          <tr>
+            <div class="score_letters"><h1>Score:</h1></div>
+            <div class="interface"><span class="score">0</span></div>
+          </tr>
+          <tr>
+            <div class="lives_letters"><h1>Lives:</h1></div>
+            <div class="live"><span class="lives">3</span></div>
+          </tr>
+        </table>
+
+      </div>
+  <div class="footer">LEFT/RIGHT keys to move, [SPACEBAR] to shoot</footer>
+
   </body>
 </html>

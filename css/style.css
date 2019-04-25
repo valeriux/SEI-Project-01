@@ -1,0 +1,287 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
+  background: url(../img/background-blue.png);
+  animation: scroll-background 5s linear infinite;
+}
+
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
+}
+h1 {
+  text-align: center;
+  font-size: 330%;
+  margin: 3px;
+}
+
+.wrap {
+  background: url(../img/background-blue.png);
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  max-height: 560px;
+  max-width: 500px;
+  animation: scroll-background 5s linear infinite;
+  border: 0.5px #696969 solid;
+
+}
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
+}
+
+.wrap div {
+  flex-grow: 1;
+  height: calc(100% / 13);
+  width: calc(100% / 13);
+}
+
+.wrap div.player {
+  content: url(../img/player2.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/*Effect to move my player image*/
+@-webkit-keyframes spaceboots {
+    0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+    10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+    30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+    80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+    90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+/*Effect to move the image*/
+.wrap div.player{
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.8s;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+
+.wrap div.aliens{
+  content: url(../img/space-invaders.svg);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.wrap div.explosion{
+  content: url(../img/explosion.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.wrap div.missiles {
+  background-image: url(../img/missile-blue-1.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.wrap div.bomb {
+  background-image: url(../img/bomb.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.second_screen .welcome_screen {
+  font-family: 'Space Mono', monospace;
+  color: #b7e66f;
+  width: 1380px;
+  height: 570px;
+  background-image: url(../img/background-blue.png);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 20px;
+  border: 4px #b7e66f solid;
+  box-shadow: 0 2px 8px 6px #f2ff98;
+
+  animation: scroll-background 5s linear infinite;
+  transform: translate(-50%, -50%);
+}
+/*Animation scroll background space*/
+@keyframes scroll-background {
+  from {
+    background-position-y: 0px;
+  }
+  to {
+    background-position-y: 256px;
+  }
+}
+
+.second_screen.hide {
+  display: none;
+}
+
+.show-final-score {
+  display: none;
+}
+
+.show-final-score.show {
+  display: block;
+  font-size: 250%;
+  margin: 1rem 0;
+}
+
+.button {
+  text-align: center;
+  width: 100%;
+  height: 200px;
+  margin: 2rem 0;
+}
+
+.button button {
+  font-family: 'Space Mono', monospace;
+  font-size: 150%;
+  text-transform: uppercase;
+  color: #000000;
+  padding: 0.5rem 0.8rem;
+  background: #b7e66f;
+  border-radius: 15px;
+  border: 5px #f1ff8e solid;
+  box-shadow: 0 2px 8px 4px #f2ff98;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+  width: 120px;
+  height: 50px;
+}
+
+.button button:hover {
+  box-shadow: 6px 18px 18px grey;
+}
+
+.button button:focus {
+  outline: 0;
+}
+
+.button button.hide {
+  opacity: 0;
+}
+
+
+/*Effect to move the image*/
+@-webkit-keyframes spaceboots {
+    0% { -webkit-transform: translate(2px, 1px) rotate(0deg); }
+    10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+    30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+    80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+    90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+/*Effect to move the image*/
+.shake {
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.8s;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+.interface {
+  margin-left: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.right-bar {
+  margin-left: 60px;
+}
+
+.live {
+  font-family: 'Space Mono', monospace;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-left: 60px;
+  display: inline-block;
+  font-size: 140%;
+  background:#39ff14;
+  padding: 0.5rem 1.0rem;
+  border-radius: 7px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+
+}
+
+
+.lives_letters{
+ font-family: 'Raleway', sans-serif;
+ font-size: 50%;
+ margin-left: 30px;
+ color: #39ff14;
+}
+
+.score {
+  font-family: 'Space Mono', monospace;
+  display: inline-block;
+  font-size: 140%;
+  background:#39ff14;
+  padding: 0.5rem 1.0rem;
+  border-radius: 7px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+}
+
+.score_letters{
+ font-family: 'Raleway', sans-serif;
+ font-size: 50%;
+ margin-left: 30px;
+ color: #39ff14;
+}
+
+
+.footer{
+  font-family: 'Space Mono', monospace;
+   font-size: 20px;
+   position: fixed;
+   right: 0px;
+   left: 0px;
+   bottom: 10px;
+   width: 1380px;
+   background: url(../img/background-blue.png);
+   color: #39ff14;
+   text-align: center;
+
+
+}
