@@ -18,7 +18,7 @@
 ## My Game - Space Invaders
 <img width="1418" alt="Screenshot 2019-04-05 at 11 40 58" src="https://user-images.githubusercontent.com/47470930/55622317-c2b79480-5797-11e9-99bd-74c027ab6c24.png">
 
-## You can play the hosted version here: https://valeriux.github.io/project-01/
+You can play the hosted version here: https://valeriux.github.io/project-01/
 
 ### Game overview
 
