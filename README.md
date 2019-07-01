@@ -12,7 +12,7 @@
 
 ## Installation
 
-1. Clone or download the repo.
+1. * Clone or download the repo.
 2. Open the `index.html` in your browser of choice.
 
 ## My Game - Space Invaders
