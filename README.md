@@ -1,6 +1,6 @@
 # GA - SEI - PROJECT-01 (Space-Invaders)
 
-### Timeframe
+## Timeframe
 * 5 days
 
 ## Technologies used
@@ -20,19 +20,19 @@
 
 You can play the hosted version here: [Space Invaders](https://valeriux.github.io/SEI-Project-01).
 
-### Game overview
+## Game overview
 
 This is my own re-creation of the classic Space Invaders game.
 
 Space Invaders is one of the most addicting games. The idea of the game is very simplistic. You are a space ship who must destroy the invading enemy space aliens as they descend. Use the [SPACE] bar to fire your gun and the arrow keys to move right and left.
 
 
-### Controls
+## Controls
 - Space ship movements: ← → keys.
 - [SPACE] bar to fire your gun.
 
 
-### Game Instructions
+## Game Instructions
 
 1. The game begins with a welcome screen and on the bottom of the screen are the game instructions. The game is started by clicking on the "START" button.
 
