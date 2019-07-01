@@ -49,8 +49,8 @@ Space Invaders is one of the most addicting games. The idea of the game is very 
 
 4. A player can have a maximum of 3 lives. If the player loses all their lives the Game is Over.
    Game is Over is show in a new window with two messages:
-   * Game Over:  You ran out of lives.
-   * Your score: X.
+   - Game Over:  You ran out of lives.
+   - Your score: X.
 
 <img width="1430" alt="Screenshot 2019-04-05 at 12 04 25" src="https://user-images.githubusercontent.com/47470930/55623463-fba53880-579a-11e9-8a6d-71288d60237e.png">
 
