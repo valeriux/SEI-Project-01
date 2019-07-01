@@ -1,8 +1,5 @@
 # GA - SEI - PROJECT-01 (Space-Invaders)
 
-
-GA-SEI-PROJECT-03
-
 ### Timeframe
 * 7 days
 
