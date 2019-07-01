@@ -42,6 +42,8 @@ Space Invaders is one of the most addicting games. The idea of the game is very 
 
 <img width="766" alt="Screenshot 2019-04-05 at 11 47 24" src="https://user-images.githubusercontent.com/47470930/55622636-a49e6400-5798-11e9-9556-425077f66dfa.png">
 
+<img width="842" alt="Screenshot 2019-07-01 at 14 21 12" src="https://user-images.githubusercontent.com/47470930/60439894-8915ee80-9c0b-11e9-879e-031a75fa1ce7.png">
+
 3. Points are gained every time player killed an enemy space alien.
 
 <img width="810" alt="Screenshot 2019-07-01 at 14 16 12" src="https://user-images.githubusercontent.com/47470930/60439449-cfb71900-9c0a-11e9-8307-fbf2669d2e5b.png">
