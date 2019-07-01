@@ -55,7 +55,7 @@ Space Invaders is one of the most addicting games. The idea of the game is very 
 <img width="1430" alt="Screenshot 2019-04-05 at 12 04 25" src="https://user-images.githubusercontent.com/47470930/55623463-fba53880-579a-11e9-8a6d-71288d60237e.png">
 
 5. You loose if:
-  - The aliens reached planet Earth.
+  - The aliens reached planet earth.
   - You ran out of lives.
 
 6. You win if:
