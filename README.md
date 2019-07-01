@@ -67,7 +67,7 @@ The starting point for this game was creating in html one div with the class nam
 
 ### Challenges
 
-In general this project was a big challenge for me. Initially was super difficult create the logic to kill my aliens and make them disappear of my array.
+The biggest challenge for this project was create the logic to kill my aliens and make them disappear of my array.
 
 ### Wins
 
