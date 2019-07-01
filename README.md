@@ -69,11 +69,9 @@ The starting point for this game was creating in html one div with the class nam
 
 In general this project was a big challenge for me. Initially was super difficult create the logic to kill my aliens and make them disappear of my array.
 
-
 ### Wins
 
 A big win for this game was to get the aliens disappear when they were shot.
-
 
 ## Future features
 
