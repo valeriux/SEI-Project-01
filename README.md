@@ -38,8 +38,6 @@ Space Invaders is one of the most addicting games. The idea of the game is very 
 
 <img width="1430" alt="Screenshot 2019-04-05 at 11 43 20" src="https://user-images.githubusercontent.com/47470930/55622406-07433000-5798-11e9-9610-abf2b63e8b36.png">
 
-(https://user-images.githubusercontent.com/47470930/60439202-4bfd2c80-9c0a-11e9-99e1-7ab9b3b6adc3.jpg)
-
 2. After the "START" button has been clicked the game starts. The user starts on 3 lives and a score of zero. The player can stars using the arrow keys left and right to move, and the [SPACE] bar to kill the enemy space aliens.
 
 <img width="766" alt="Screenshot 2019-04-05 at 11 47 24" src="https://user-images.githubusercontent.com/47470930/55622636-a49e6400-5798-11e9-9556-425077f66dfa.png">
