@@ -20,6 +20,8 @@
 
 You can play the hosted version here: src="https://valeriux.github.io/project-01/"
 
+: [Space Invaders](https://valeriux.github.io/project-01/).
+
 ### Game overview
 
 This is my own re-creation of the classic Space Invaders game.
