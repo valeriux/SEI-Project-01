@@ -28,7 +28,7 @@ Space Invaders is one of the most addicting games. The idea of the game is very 
 
 
 ### Controls
-- Space ship movements: ← →
+- Space ship movements: ← → keys
 - [SPACE] bar to fire your gun
 
 
