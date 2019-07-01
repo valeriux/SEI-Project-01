@@ -75,8 +75,7 @@ A big win for this game was to get the aliens disappear when they were shot.
 
 ## Future features
 
-I would like to add three difficulty levels.
-
-I would like to add 3 types of missile: slow straight ones, fast straight ones and wiggly ones which are the most powerful.
-
-I would like to add some base shelters.
+I would like to add:
+- Three difficulty levels.
+- Three types of missile: slow straight ones, fast straight ones and wiggly ones which are the most powerful.
+- A base shelters.
